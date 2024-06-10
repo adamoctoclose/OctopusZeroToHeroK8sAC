@@ -1,0 +1,3 @@
+variable "spec:template:spec:containers:0:image" {
+    value "adamoctoclose/octoretail-frontend:#{Octopus.Action.Package[octoretail-frontend].PackageVersion}" {}
+}
