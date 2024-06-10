@@ -10,7 +10,7 @@ step "create-namespace" {
             Octopus.Action.GitRepository.Source = "Project"
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptFileName = "scripts/create-namespace.ps1"
-            Octopus.Action.Script.ScriptParameters = "-namespace #{Octopus.Environment.Name}"
+            Octopus.Action.Script.ScriptParameters = "-namespace #{Octopus.Environment.Name | ToLower }"
             Octopus.Action.Script.ScriptSource = "GitRepository"
         }
         worker_pool_variable = ""
