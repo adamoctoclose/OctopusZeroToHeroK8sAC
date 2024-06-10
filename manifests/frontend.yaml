@@ -19,7 +19,7 @@ spec:
         - containerPort: 80
         env:
         - name: PRODUCT_API_URL
-          value: "http://localhos:3000/products"
+          value: "http://localhost:3000/products"
 ---
 apiVersion: v1
 kind: Service
