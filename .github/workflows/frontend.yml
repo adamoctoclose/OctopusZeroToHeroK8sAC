@@ -30,9 +30,9 @@ jobs:
 
 
       - name: Build Docker Frontend image
-        run: docker build -f ./frontend/Dockerfile -t adamoctoclose/heretozero-frontend:${{ env.PACKAGE_VERSION }} ./frontend
+        run: docker build -f ./frontend/Dockerfile -t adamoctoclose/herotozero-frontend:${{ env.PACKAGE_VERSION }} ./frontend
 
 
       - name: Push Docker Front image to Docker Hub
-        run: docker push adamoctoclose/heretozero-frontend:${{ env.PACKAGE_VERSION }}
+        run: docker push adamoctoclose/her0tozero-frontend:${{ env.PACKAGE_VERSION }}
         
