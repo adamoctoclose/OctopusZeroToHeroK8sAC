@@ -107,10 +107,6 @@ resource "helm_release" "octopus_agent_democluster" {
     name = "agent.targetRoles"
     value = "{demo-k8s-cluster}"
   }
-  set {
-    name = "agent.bearerToken"
-    value = "e"
-  }
 
   set {
     name = "agent.serverApiKey"
