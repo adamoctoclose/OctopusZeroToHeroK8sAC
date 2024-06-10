@@ -19,7 +19,7 @@ spec:
         - containerPort: #{Project.frontend.port}
         env:
         - name: PORT
-          value: #{Project.frontend.port} # Set the PORT environment variable for the container, replace with actual port if needed
+          value: "#{Project.frontend.port}"
 ---
 apiVersion: v1
 kind: Service
