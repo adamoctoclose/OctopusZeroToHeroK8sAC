@@ -17,9 +17,6 @@ spec:
         image: adamoctoclose/octoretail-frontend:#{Octopus.Release.Number}
         ports:
         - containerPort: 80
-        env:
-        - name: PRODUCT_API_URL
-          value: "http://localhost:3000/products"
 ---
 apiVersion: v1
 kind: Service
