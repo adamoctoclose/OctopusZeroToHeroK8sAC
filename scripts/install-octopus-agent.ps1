@@ -1,13 +1,13 @@
 helm upgrade --install --atomic `
     --set agent.acceptEula="Y" `
-    --set agent.targetName="Demo Kubernetes Target" `
-    --set agent.serverUrl="https://adamclose.octopus.app/" `
-    --set agent.serverCommsAddress="https://polling.adamclose.octopus.app/" `
-    --set agent.space="ZeroToHero" `
+    --set agent.targetName="Local Kubernetes Agent Setup" `
+    --set agent.serverUrl="https://zerotohero.octopus.app/" `
+    --set agent.serverCommsAddress="https://polling.zerotohero.octopus.app/" `
+    --set agent.space="Zero To Hero" `
     --set agent.targetEnvironments="{development,test,production}" `
-    --set agent.targetRoles="{zeroToHero}" `
-    --set agent.bearerToken="eyJhbGciOiJQUzI1NiIsImtpZCI6ImEwZTI5OTM2ZmZlMzRkY2JhZDViNWVhMDgwZTM5NmI0IiwidHlwIjoiSldUIn0.eyJzdWIiOiI3OGE3YmQzMS03YmQxLTQyYWItOGZmNi01MGYxMTc1Yzc4M2IiLCJqdGkiOiJkZGI3MmYwYjcxYTM0NjIwYTk3N2UyZjU1MDcyMWZlYSIsImF1ZCI6Imh0dHBzOi8vYWRhbWNsb3NlLm9jdG9wdXMuYXBwIiwiZXhwIjoxNzE4MDEzNDEyLCJpc3MiOiJodHRwczovL2FkYW1jbG9zZS5vY3RvcHVzLmFwcCIsImlhdCI6MTcxODAwOTgxMiwibmJmIjoxNzE4MDA5ODEyfQ.DgJs7mn_GhF6JZ4f9T-1DAIFseeDMzBVY-TV7Tn_Q-bj1gM8V2QDaBN3WFmO-nvqBriI0kxBGC08-XzoqiTGtSV-iCAAgVbx1f9lOWfKJH9__XUEVyTfxsqP6L-ODr7UYWFs9yUQh7YOh04u_9LnVdS0XYEBHubNPjA661IuKVjLwJncQjHi0ePps5DCwSMnCSlcw3kQ83fRSZk-L7iHH6_AHGKG9p-JhsBYmLasRbmMaeH676BDaiLzhHPPP69dUg5re7rgNujrO79aj0IUACNHZ8zm4674Uqhee4wqZeTkZxwwfVBJt3bOFvOUdY4VAcPROezA6krN4f3CYBsSMw" `
+    --set agent.targetRoles="{zerotohero-frontend}" `
+    --set agent.bearerToken="eyJhbGciOiJQUzI1NiIsImtpZCI6ImYxZThmOTVlZWU2MzRkYWFiNWJlNmVjOTFmNjkwYzhmIiwidHlwIjoiSldUIn0.eyJzdWIiOiIzM2E2YjkzOS05MmU4LTQzMjMtYWI4OS0xMjkzNDczOGJjMGEiLCJqdGkiOiJiZDQzZDMxNjNmZGM0NzkwYmU1Yzg5YmZlMTJhNGQ1OCIsImF1ZCI6Imh0dHBzOi8vemVyb3RvaGVyby5vY3RvcHVzLmFwcCIsImV4cCI6MTcxODA1ODY2NSwiaXNzIjoiaHR0cHM6Ly96ZXJvdG9oZXJvLm9jdG9wdXMuYXBwIiwiaWF0IjoxNzE4MDU1MDY1LCJuYmYiOjE3MTgwNTUwNjV9.UZi7CcEPzInT0pOGW-CLwrkm8Ei1fPBJvgB1oWLGBBYtz0efqlLmCWniVsZP5HQlpC-1zSF73TBVgbXdL1e-IbV_gMIoHyCC5hosH9Yaev_JGZVQXXOU0G4Yjpa4trdJF01D9q0jhODUS63xRyJcQXjui3h6EpffD9zUlvvzS4EAdTuRKXBENJ9M0BcrWwnLWBwYGrLr5uaVJ2oILK1uhZqX-tmg5HtkzVFL5CRAoMwUeQIsgz9ffUgH3sa4K3MeYZXwsFOrv8mZX06RS4TFs0OCTSEGdwiGvgDP70jXBLSZMcwSeadMyilPgQa43G0CchzXz8eufaMwWEib1QEpHA" `
     --version "1.*.*" `
-    --create-namespace --namespace octopus-agent-demokubernetestarget `
-    demokubernetestarget `
+    --create-namespace --namespace octopus-agent-localkubernetesagentsetup `
+    localkubernetesagentsetup `
     oci://registry-1.docker.io/octopusdeploy/kubernetes-agent

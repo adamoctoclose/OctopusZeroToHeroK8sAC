@@ -16,7 +16,10 @@ spec:
       - name: frontend
         image: adamoctoclose/octoretail-frontend:#{Octopus.Release.Number}
         ports:
-        - containerPort: 80
+        - containerPort: #{Project.frontend.port}
+        env:
+        - name: PORT
+          value: #{Project.frontend.port} # Set the PORT environment variable for the container, replace with actual port if needed
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +30,6 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: #{Project.frontend.port}
+      targetPort: #{Project.frontend.port}
   type: LoadBalancer
