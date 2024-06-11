@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: adamoctoclose/octoretail-frontend:#{Octopus.Release.Number}
+        image: adamoctoclose/frontend
         ports:
         - containerPort: #{Project.frontend.port}
         env:
