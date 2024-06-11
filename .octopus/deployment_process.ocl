@@ -1,0 +1,67 @@
+step "manual-intervention-required-for-production" {
+    name = "Manual Intervention Required for Production "
+
+    action {
+        action_type = "Octopus.Manual"
+        environments = ["production"]
+        properties = {
+            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
+            Octopus.Action.Manual.Instructions = "Please approve my deployment "
+            Octopus.Action.Manual.ResponsibleTeamIds = "global/everyone"
+        }
+    }
+}
+
+step "create-namespace" {
+    name = "Create namespace"
+    properties = {
+        Octopus.Action.TargetRoles = "zerotohero-frontend"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "scripts/create-namespace.ps1"
+            Octopus.Action.Script.ScriptParameters = "-namespace #{Octopus.Environment.Name | ToLower}"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+    }
+}
+
+step "deploy-frontend" {
+    name = "Deploy Frontend"
+    properties = {
+        Octopus.Action.TargetRoles = "zerotohero-frontend"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesDeployRawYaml"
+        properties = {
+            Octopus.Action.GitRepository.FilePathFilters = "manifests/frontend.yaml"
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.Kubernetes.DeploymentTimeout = "180"
+            Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
+            Octopus.Action.Kubernetes.ServerSideApply.Enabled = "True"
+            Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "True"
+            Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "manifests/frontend.yaml"
+            Octopus.Action.KubernetesContainers.Namespace = "#{Octopus.Environment.Name |ToLower}"
+            Octopus.Action.Package.JsonConfigurationVariablesTargets = "**/*.{yml,yaml}"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        packages "zerotohero-frontend" {
+            acquisition_location = "NotAcquired"
+            feed = "docker-hub"
+            package_id = "adamoctoclose/zerotohero-frontend"
+            properties = {
+                Extract = "False"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
