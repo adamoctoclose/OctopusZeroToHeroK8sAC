@@ -1,0 +1,17 @@
+variable "spec:template:spec:containers:0:image" {
+    value "adamoctoclose/zerotohero-frontend:#{Octopus.Action.Package[zerotohero-frontend].PackageVersion}" {}
+}
+
+variable "Project.frontend.port" {
+    value "82" {
+        environment = ["development"]
+    }
+
+    value "81" {
+        environment = ["test"]
+    }
+
+    value "80" {
+        environment = ["production"]
+    }
+}
